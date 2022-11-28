@@ -1,0 +1,13 @@
+0->name
+1->code
+2->count
+3->price
+
+basket:
+[
+    0->name
+    1->code
+    2->count
+    3->price
+    4->total_price
+]
