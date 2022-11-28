@@ -4,8 +4,7 @@ from vars import *
 from functions import *
 
 
-
-def articles_frame_list(win: Frame, articles: 'list[dict]', basket: 'list[dict]', callback) -> Frame:
+def articles_frame_list(win: Frame, articles: 'list[list]', basket: 'list[list]', callback) -> Frame:
     screen = Frame(win, bg=bg)
     screen.grid(row=len(articles)+2, column=6)
 
@@ -13,9 +12,10 @@ def articles_frame_list(win: Frame, articles: 'list[dict]', basket: 'list[dict]'
           font=font14, bg=bg, fg=fg).grid(row=0, columnspan=6)
 
     # Adding headers to our table
-    columns_names = ('Code', 'Nom', 'Prix Unitaire', 'Quantité en Stock')
+    columns_names = ('Code', 'Nom', 'Prix Unitaire', 'Stock')
     columns_id = ('code', 'name', 'price', 'stock')
-    tree = ttk.Treeview(screen, columns=columns_id, show='headings', selectmode='browse')
+    tree = ttk.Treeview(screen, columns=columns_id,
+                        show='headings', selectmode='browse')
     for i in range(len(columns_id)):
         tree.heading(columns_id[i], text=columns_names[i])
 
@@ -23,8 +23,7 @@ def articles_frame_list(win: Frame, articles: 'list[dict]', basket: 'list[dict]'
     # formating articles for displaying
     data = []
     for i in range(len(articles)):
-        data.append((articles[i][1], articles[i][0],
-                    articles[i][2], articles[i][2]))
+        data.append((articles[i][0], articles[i][1], articles[i][2], articles[i][3]))
     # adding them to the tree to be displayed
     for line in data:
         tree.insert('', END, values=line)
@@ -35,7 +34,7 @@ def articles_frame_list(win: Frame, articles: 'list[dict]', basket: 'list[dict]'
         for selected_item in tree.selection():
             item = tree.item(selected_item)
             record = item['values']
-            add_to_basket(articles, basket, record)
+            add_to_basket(articles, basket, record[0])
             callback()
     # biding the item selection event to a function
     tree.bind('<<TreeviewSelect>>', item_selected)
@@ -43,20 +42,20 @@ def articles_frame_list(win: Frame, articles: 'list[dict]', basket: 'list[dict]'
     return screen
 
 
-def basket_list_frame(win: Frame, articles: 'list[dict]', basket: 'list[dict]', callback) -> Frame:
+def basket_list_frame(win: Frame, articles: 'list[list]', basket: 'list[list]', callback) -> Frame:
     screen2 = Frame(win, bg=bg)
     screen2.grid(row=len(articles)+2, column=6)
 
     # Adding headers to our table
     columns_names = ('Code', 'Nom', 'Prix Unitaire', 'Qté', 'Prix Total')
-    columns_id = ('code', 'name', 'price', 'quantity', 'total_price')
+    columns_id = ('code', 'name', 'price', 'quantity', 'totoal_price')
     tree2 = ttk.Treeview(screen2, columns=columns_id, show='headings')
     for i in range(len(columns_id)):
         tree2.heading(columns_id[i], text=columns_names[i])
     data = []
     for i in range(len(basket)):
-        data.append((i+1, basket[i]['name'],
-                    basket[i]['price'], basket[i]['count'], basket[i]['price']*basket[i]['count']))
+        data.append((basket[i][0], basket[i][1],
+                    basket[i][2], basket[i][3], basket[i][2]*basket[i][3]))
     # adding them to the tree to be displayed
     for line in data:
         tree2.insert('', END, values=line)
@@ -68,7 +67,7 @@ def basket_list_frame(win: Frame, articles: 'list[dict]', basket: 'list[dict]', 
         for selected_item in tree2.selection():
             item = tree2.item(selected_item)
             record = item['values']
-            remove_from_basket(articles, basket, record[1])
+            remove_from_basket(articles, basket, record[0])
             callback()
     # biding the item selection event to a function
     tree2.bind('<<TreeviewSelect>>', item_selected)

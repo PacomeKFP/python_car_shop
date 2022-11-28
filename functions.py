@@ -4,12 +4,14 @@ import tabulate as tbl
 import tkinter.messagebox as mb
 
 
-def add_to_basket(store_articles: 'list[list]', basket: 'list[list]', article_to_add: list):
+def add_to_basket(store_articles: 'list[list]', basket: 'list[list]', article_to_add: str):
     price = 0
+    article_name = ''
     # Removing the article from the the store
     for article in store_articles:
-        if article[0] == article_to_add[0]:
-            # price = article[3]
+        if article[0] == article_to_add:
+            price = article[3]
+            article_name = article[1]
             article[2] -= 1
             if article[2] == 0:
                 store_articles.remove(article)
@@ -17,21 +19,22 @@ def add_to_basket(store_articles: 'list[list]', basket: 'list[list]', article_to
     # adding the article to the basket
     is_already_there = False
     for article in basket:
-        if article[0] == article_to_add[0]:
+        if article[0] == article_to_add:
             article[2] += 1
             is_already_there = True
     if not is_already_there:
-        basket.append(
-            [article_to_add[0], article_to_add[1], 1, article_to_add[3]])
+        basket.append([article_to_add, article_name, 1, price, price*1])
 
 
-def remove_from_basket(store_articles: 'list[list]', basket: 'list[list]', article_to_remove: list):
+def remove_from_basket(store_articles: 'list[list]', basket: 'list[list]', article_to_remove: str):
 
     price = 0
+    article_name = ''
     # removing article to the basket
     for article in basket:
-        if article[0] == article_to_remove[0]:
+        if article[0] == article_to_remove:
             price = article[3]
+            article_name = article[1]
             article[2] -= 1
             if (article[2] == 0):
                 basket.remove(article)
@@ -39,12 +42,12 @@ def remove_from_basket(store_articles: 'list[list]', basket: 'list[list]', artic
     # HERE: restoring the article to the store
     is_already_there = False
     for article in store_articles:
-        if article[0] == article_to_remove[0]:
+        if article[0] == article_to_remove:
             article[2] += 1
             is_already_there = True
     if not is_already_there:
         store_articles.append(
-            [article_to_remove[0], article_to_remove[1], 1, article_to_remove[0]])
+            [article_to_remove, article_name, 1, price])
 
 
 def validate_purchase(basket: 'list[list]', name_of_the_client: str) -> str:
@@ -56,12 +59,12 @@ def validate_purchase(basket: 'list[list]', name_of_the_client: str) -> str:
     client: dict = {}
     # find the rig client:
     is_already_exist = False
-    for old_client in clients:
-        if old_client["name"] == name_of_the_client:
+    for cl in clients:
+        if cl["name"] == name_of_the_client:
             is_already_exist = True
-            old_client['visits'] += 1
-            client = old_client
-            old_client['purchases'].append(basket)
+            cl['visits'] += 1
+            client = cl
+            cl['purchases'].append(basket)
 
     if not is_already_exist:
         client = {
@@ -94,7 +97,7 @@ def validate_purchase(basket: 'list[list]', name_of_the_client: str) -> str:
                         new_purchase[4] *= 0.98
         if hasReduction:
             mb.showinfo(
-                "Reductions😍", f"Felicitations vous beneficiez d'une reduction de 2% sur l'article {new_purchase[0]}")
+                "Reductions😍", f"Felicitations vous beneficiez d'une reduction de 2% sur l'article {new_purchase['name']}")
 
     # Data that will be contained in a bill
     bill = {
@@ -120,8 +123,9 @@ def bill_writter(bill: dict) -> None:
     for article in basket:
         count += article[2]
         total += article[4]
-    basket.append({'name': 'TOTAL', 'count': count, 'total_price': total})
-    headers = ['Article',"Code Barre" ,'Quantité','Prix Unitaire', 'Prix total']
+    basket.append(['TOTAL','', count, '', total])
+    headers = ['Code', 'Article',  'Quantité',
+               'Prix Unitaire', 'Prix total']
     with open(f'./data/bills/{bill["file_name"]}', 'w', encoding="utf-8") as bill_file:
         table = tbl.tabulate(basket, headers=headers,
                              tablefmt='fancy_grid', showindex=True)

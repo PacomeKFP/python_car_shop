@@ -1,5 +1,3 @@
-from fileinput import filename
-import subprocess
 import json
 import os
 import tkinter as tk
@@ -34,7 +32,9 @@ def refresh_window():
     global a
     global b
     global packed
+    global articles
     with open('./data/articles.json', 'w') as articles_file:
+        # print(articles)
         json.dump(articles, articles_file)
     a.destroy()
     b.destroy()
@@ -52,7 +52,7 @@ def valid_purchase():
     info_box = mb.showinfo(title='Well done', message=f'Votre facture a bien ete genere\n Merci pour vos achats, à la prochaine\n\n')    
     dest =f"data\\bills\\{file_name}"
     if info_box == 'ok':
-        os.startfile(dest, 'open')
+        # os.startfile(dest, 'open')
         window.quit()
         
 
@@ -71,12 +71,10 @@ def display_frames():
 
 def start():
     global client_name
-    global articles
-    global basket
     if client_name.get().strip() == "":
         client_name.set('')
         return mb.showinfo('Pas si vite ...', 'Veuiller entrer votre nom avant de continuer')
-
+    client_name.set(client_name.get().title().strip())
     welcome_frame.destroy()
     app.pack()
     display_frames()
