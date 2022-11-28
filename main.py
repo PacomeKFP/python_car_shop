@@ -1,5 +1,5 @@
 import json
-import os
+import os, sys, subprocess
 import tkinter as tk
 import tkinter.messagebox as mb
 from my_frames import *
@@ -34,7 +34,6 @@ def refresh_window():
     global packed
     global articles
     with open('./data/articles.json', 'w') as articles_file:
-        # print(articles)
         json.dump(articles, articles_file)
     a.destroy()
     b.destroy()
@@ -47,12 +46,15 @@ def refresh_window():
 
 def valid_purchase():
     global app
-    file_name = validate_purchase(
+    bill_path = validate_purchase(
         basket=basket, name_of_the_client=client_name.get().strip())
     info_box = mb.showinfo(title='Well done', message=f'Votre facture a bien ete genere\n Merci pour vos achats, à la prochaine\n\n')    
-    dest =f"data\\bills\\{file_name}"
+    
     if info_box == 'ok':
-        # os.startfile(dest, 'open')
+        if sys.platform == 'linux':
+            subprocess.call(["xdg-open", bill_path])
+        else:
+            os.startfile(bill_path, 'open')
         window.quit()
         
 

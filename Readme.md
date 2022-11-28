@@ -26,8 +26,6 @@
 >Une fois ouvert le programme vous demange d'entrer votre nom: le nom du client,une fois confirmé, s'ouvre une interface qui vous presenter les articles de la boutiques ainsi que votre panier qui est initialement vide.Vous le remplirer en cliquant sur les differents articles de la boutique, et vous le retirerez en cliquant sur les articles dans votre panier, il retoureneront automatiquement dans la boutique.
 Vous achats terminés, vous pouvez valider votre commande et votre facture sera generée. Toutefois il est possible pour un client d'obtenir une reduction sur des produits, pour cela, lil doit acheter au moins deux fois differentes un même article; au troisiemme achat, il obtiendra alors une reductions sur le prix de l'article. 
 
-># Difficultée rencontrée:
->le programme ayant été developpé sur un ordinateur ayant pour systeme d'explotation à noyau Linux, les interactions systemes sont rendues très hardue, pour la plus part innoperantes, raison pour laquele nous nous sommes detournés de la notion de creation de dossier pour la creation de fichier avec des noms distincts.
 
 
 >#  Deploiement:

@@ -1,5 +1,5 @@
+import os
 import json
-from uuid import uuid4
 import tabulate as tbl
 import tkinter.messagebox as mb
 
@@ -90,19 +90,18 @@ def validate_purchase(basket: 'list[list]', name_of_the_client: str) -> str:
             for old_purchases in list(client['purchases'][:-1]):
 
                 for old_purchase in old_purchases:
-                    print(new_purchase)
                     if old_purchase[0] == new_purchase[0] and old_purchase[2] >= 2:
                         # we have to accord the reduction
                         hasReduction = True
                         new_purchase[4] *= 0.98
         if hasReduction:
             mb.showinfo(
-                "Reductions😍", f"Felicitations vous beneficiez d'une reduction de 2% sur l'article {new_purchase['name']}")
+                "Reductions😍", f"Felicitations vous beneficiez d'une reduction de 2% sur l'article {new_purchase[1]}")
 
     # Data that will be contained in a bill
     bill = {
         'client_name': name_of_the_client,
-        'file_name': str(uuid4())+'.txt',
+        'bill_path': generate_bill_path(name_of_the_client, client['visits']),
         'purchases': basket
     }
     # savaing the new bill in the invoices file, and
@@ -114,7 +113,7 @@ def validate_purchase(basket: 'list[list]', name_of_the_client: str) -> str:
     # generate the bill_file
     bill_writter(bill)
     basket = []
-    return bill['file_name']
+    return bill['bill_path']
 
 
 def bill_writter(bill: dict) -> None:
@@ -123,12 +122,19 @@ def bill_writter(bill: dict) -> None:
     for article in basket:
         count += article[2]
         total += article[4]
-    basket.append(['TOTAL','', count, '', total])
+    basket.append(['TOTAL', '', count, '', total])
     headers = ['Code', 'Article',  'Quantité',
                'Prix Unitaire', 'Prix total']
-    with open(f'./data/bills/{bill["file_name"]}', 'w', encoding="utf-8") as bill_file:
+    with open(f'{bill["bill_path"]}', 'w', encoding="utf-8") as bill_file:
         table = tbl.tabulate(basket, headers=headers,
                              tablefmt='fancy_grid', showindex=True)
-        print(bill['client_name'])
         name = str(bill['client_name']).title()
         bill_file.write(f"Nom du client: {name}\n{table}")
+
+
+def generate_bill_path(client_name: str, visits_nbr: int) -> str:
+    base = './data/bills/'+client_name
+    if os.path.exists(base):
+        return base+f'/{client_name}{visits_nbr-1}.txt'
+    os.mkdir(base)
+    return base+f'/{client_name}.txt'
