@@ -32,20 +32,20 @@ Vous achats terminés, vous pouvez valider votre commande et votre facture sera 
 >
 >- Le fichier `functions.py`: contient les différentes fonctions du programmes, celles liées à la gestion du panier. Aucune de ces fonctions ne modifie directement l'inferface graphique, elles effectuent uniquement des modifications sur les données courantes de l'application.
 >
->- Le fichier `my_frames.py`: contient les différentes fonctions du programme liées aux inerfaces graphiques. On y retrouve les differents tableaux qui servent soit de panier pour l'utilisateur soit de liste d'articles disponible dans le magasin. Ces fonctions font apper à l'outil *TreeView* de Tkinter
+>- Le fichier `my_frames.py`: contient les différentes fonctions du programme liées aux interfaces graphiques. On y retrouve les différents tableaux qui servent soit de panier pour l'utilisateur soit de liste d'articles disponibles dans le magasin. Ces fonctions font appel à l'outil *TreeView* de Tkinter
 >
->- Le fichier `constants.py` qui contient les differentes constantes utiliées dans l'application à l'instar du nom de la boutique ainsi que les differentes couleurs et polices utilisées pour les interfaces graphiques. 
+>- Le fichier `constants.py` qui contient les différentes constantes utilisées dans l'application à l'instar du nom de la boutique ainsi que les différentes couleurs et polices utilisées pour les interfaces graphiques. 
 >
 >- Le fichier `requirements.txt` qui contient les modules necessaires à l'installation du programme.
 >
 >**La partie Donnée**: consituée du dossier `data`, ce  dernier contient:
->-  les fichiers `clients.json`, `articles.json` et `invoices.json`. Ces derniers representent les données d'application, en l'occurence la liste des clients ayant fait des achats dans l'application; Les differents articles de en stock dans la boutique. Les differentes factures generées (les données de ces factures: nom du client, differents articles achetés, nom du fichier de facture ...).
+>-  les fichiers `clients.json`, `articles.json` et `invoices.json`. Ces derniers representent les données d'application, en l'occurence la liste des clients ayant fait des achats dans l'application; Les différents articles en stock dans la boutique. Les différentes factures générées (les données de ces factures: nom du client, différents articles achetés, nom du fichier de facture ...).
 >-  le dossier `doc`: qui contient les images necessaires à la redaction de cette documentation
->-  le dossier `bills`: qui contient les differentes factures generées par l'applications. Ces factures sont rangées dans des dossiers chaque dossier portant le nom du client auquel il se rapporte.
+>-  le dossier `bills`: qui contient les différentes factures generées par l'applications. Ces factures sont rangées dans des dossiers chaque dossier portant le nom du client auquel il se rapporte.
 
 
 >#  Deploiement:
->Afin de rendre le projet accessible à grand monde, ce programme sera deployé et heberbergé sur un depot sur le [depot github *python_car_shop*](https://github.com/PacomeKFP/python_car_shop.git) de [PacomeKFP](https://github.com/PacomeKFP?tab=repositories). Pour tout desir de contribution, remarque ou besoin de contact, mon email est laissée plus bas: 
+>Afin de rendre le projet accessible à grand monde, ce programme sera deployé et hebergé sur le [depot github *python_car_shop*](https://github.com/PacomeKFP/python_car_shop.git) du profil [PacomeKFP](https://github.com/PacomeKFP?tab=repositories). Pour tout désir de contribution, remarque ou besoin de contact, mon email est laissé plus bas: 
 
 
 
