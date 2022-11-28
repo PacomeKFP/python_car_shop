@@ -35,5 +35,5 @@ Vous achats terminés, vous pouvez valider votre commande et votre facture sera 
 
 
 
->###   Ecris par les étudiants du groupe **`B` de [l'Ecole Nationale Superieure Polytechnique de Yaoundé](https://polytechnique.cm/) **:
+>###   Ecris par les étudiants du groupe **B de [l'Ecole Nationale Superieure Polytechnique de Yaoundé](https://polytechnique.cm/) **:
 >- [`Kengali Fegue Pacome`](mailto:pacomekengafe@gmail.com):  
