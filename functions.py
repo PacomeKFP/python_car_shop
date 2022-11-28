@@ -2,7 +2,7 @@ import os
 import json
 import tabulate as tbl
 import tkinter.messagebox as mb
-from vars import *
+from constants import *
 
 
 def add_to_basket(store_articles: 'list[list]', basket: 'list[list]', article_to_add: str):

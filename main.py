@@ -5,7 +5,7 @@ import subprocess
 import tkinter as tk
 import tkinter.messagebox as mb
 from my_frames import *
-from vars import *
+from constants import *
 from functions import validate_purchase
 
 
@@ -13,7 +13,8 @@ a: Frame
 b: Frame
 
 
-window = tk.Tk(className=SHOP_NAME)
+window = tk.Tk()
+window.title(SHOP_NAME)
 window.geometry("1080x720")
 window.config(bg=bg, padx=padx, pady=pady)
 

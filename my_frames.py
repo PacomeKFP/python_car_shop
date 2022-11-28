@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from vars import *
+from constants import *
 from functions import *
 
 
