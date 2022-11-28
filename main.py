@@ -1,5 +1,7 @@
 import json
-import os, sys, subprocess
+import os
+import sys
+import subprocess
 import tkinter as tk
 import tkinter.messagebox as mb
 from my_frames import *
@@ -7,12 +9,11 @@ from vars import *
 from functions import validate_purchase
 
 
-
 a: Frame
 b: Frame
 
 
-window = tk.Tk(className="Shopping Application")
+window = tk.Tk(className=SHOP_NAME)
 window.geometry("1080x720")
 window.config(bg=bg, padx=padx, pady=pady)
 
@@ -48,15 +49,16 @@ def valid_purchase():
     global app
     bill_path = validate_purchase(
         basket=basket, name_of_the_client=client_name.get().strip())
-    info_box = mb.showinfo(title='Well done', message=f'Votre facture a bien ete genere\n Merci pour vos achats, à la prochaine\n\n')    
-    
+    info_box = mb.showinfo(
+        title='Well done', message=f'Votre facture a bien ete genere\n Merci pour vos achats, à la prochaine\n\n')
+
     if info_box == 'ok':
         if sys.platform == 'linux':
             subprocess.call(["xdg-open", bill_path])
         else:
             os.startfile(bill_path, 'open')
         window.quit()
-        
+
 
 btn = Button(window, text='Valider ma commande', font=font14b,
              padx=padx, pady=pady, fg=fg, bg=bg, command=valid_purchase)
@@ -84,7 +86,7 @@ def start():
 
 # Show a welcome frame and ask the user name
 welcome_frame = tk.Frame(window, background=bg)
-tk.Label(welcome_frame, text="Bienvenu\n veuillez entrer votre nom",
+tk.Label(welcome_frame, text="Bienvenue\n veuillez entrer votre nom, afin de proceder aux achats",
          font=font18, bg=bg, fg=fg).pack(expand=YES, padx=padx, pady=pady)
 tk.Entry(welcome_frame, text="Votre nom: ", font=font16,
          textvariable=client_name).pack(fill=X, padx=2*padx)

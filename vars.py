@@ -1,5 +1,6 @@
-bg = 'green'
-bg = 'green'
+SHOP_NAME = 'Car Zone'
+
+bg = 'blue'
 fg = 'white'
 
 padx = 20

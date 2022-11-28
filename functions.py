@@ -2,6 +2,7 @@ import os
 import json
 import tabulate as tbl
 import tkinter.messagebox as mb
+from vars import *
 
 
 def add_to_basket(store_articles: 'list[list]', basket: 'list[list]', article_to_add: str):
@@ -129,7 +130,7 @@ def bill_writter(bill: dict) -> None:
         table = tbl.tabulate(basket, headers=headers,
                              tablefmt='fancy_grid', showindex=True)
         name = str(bill['client_name']).title()
-        bill_file.write(f"Nom du client: {name}\n{table}")
+        bill_file.write(f"Nom du client: {name}\n{table}\n\nMerci d'avoir fait vos achats chez {SHOP_NAME}")
 
 
 def generate_bill_path(client_name: str, visits_nbr: int) -> str:
