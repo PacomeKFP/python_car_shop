@@ -1,4 +1,4 @@
-# **_Car Shopping_**
+# [**_Car Shopping_**](https://github.com/PacomeKFP/python_car_shop)
 
 >##  **Description**
 >
@@ -31,10 +31,9 @@ Vous achats terminés, vous pouvez valider votre commande et votre facture sera 
 
 
 >#  Deploiement:
->Afin de rendre le projet accessible à grand monde, ce programme sera deployé et heberbergé sur un depot sur le [depot github](https://github.com/PacomeKFP/python_car_shop)  
+>Afin de rendre le projet accessible à grand monde, ce programme sera deployé et heberbergé sur un depot sur le [depot github *python_car_shop*](https://github.com/PacomeKFP/python_car_shop.git) de [PacomeKFP](https://github.com/PacomeKFP?tab=repositories). Pour tout desir de contribution, remarque ou besoin de contact, mon email est laissée plus bas: 
 
 
->###   Ecris par les étudiants du groupe **`B`**:
->- `Kengali Fegue Pacome` 
->- `Kengali Fegue Pacome` 
->- `Kengali Fegue Pacome` 
+
+>###   Ecris par les étudiants du groupe **`B` de [l'Ecole Nationale Superieure Polytechnique de Yaoundé](https://polytechnique.cm/) **:
+>- [`Kengali Fegue Pacome`](mailto:pacomekengafe@gmail.com):  
